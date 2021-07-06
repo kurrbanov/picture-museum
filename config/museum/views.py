@@ -23,7 +23,7 @@ def show_picture(request, pk):
     except Picture.DoesNotExist:
         return HttpResponse(request, 'Картина не существует')
 
-    return render(request, 'info_html.html', context={'picture': picture})
+    return render(request, 'info_html.html', context={'picture': picture, 'author': None})
 
 
 def show_author(request, pk):
@@ -32,4 +32,5 @@ def show_author(request, pk):
     except Author.DoesNotExist:
         return HttpResponse(request, 'Автор не существует')
 
-    return render(request, 'info_html.html', context={'author': author})
+    return render(request, 'info_html.html',
+                  context={'picture': None, 'author': author, 'author_pics': author.picture_set.all()})

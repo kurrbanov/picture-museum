@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Музей</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/main_styles.css' %}">
+</head>
+<body>
+<div class="main">
+    <div class="flx">
+        <h1>Добро пожаловать в музей искусств!</h1>
+    </div>
+    <div class="flx">
+        <a class="main-links" href="{% url 'authors' %}">Авторы</a>
+        <a class="main-links" href="{% url 'pictures' %}">Картины</a>
+    </div>
+</div>
+</body>
+</html>

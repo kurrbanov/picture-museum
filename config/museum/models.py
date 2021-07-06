@@ -9,6 +9,9 @@ class Author(models.Model):
     die = models.IntegerField()
     bio = models.TextField()
 
+    class Meta:
+        ordering = ('name', 'surname')
+
     def __str__(self):
         return f"{self.name} {self.surname}"
 
@@ -18,6 +21,9 @@ class Picture(models.Model):
     img = models.ImageField()
     year = models.IntegerField()
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
+
+    class Meta:
+        ordering = ('title', )
 
     def __str__(self):
         return f"{self.title}"

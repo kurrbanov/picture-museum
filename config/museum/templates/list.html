@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Музей</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/main_styles.css' %}">
+</head>
+<body>
+<div class="main">
+    <div class="flx">
+        {% if authors is None %}
+            <h1>Список картин:</h1>
+        {% else %}
+            <h1>Список авторов:</h1>
+        {% endif %}
+    </div>
+    <div class="flx flx-lst">
+        <ul>
+            {% if authors is None %}
+                {% for picture in pictures %}
+                    <li>
+                        <a href="{% url 'picture' picture.id %}">{{ picture.title }}, {{ picture.author.name }} {{ picture.author.surname }}</a>
+                    </li>
+                {% endfor %}
+            {% else %}
+                {% for author in authors %}
+                    <li>
+                        <a href="{% url 'author' author.id %}">{{ author.name }} {{ author.surname }}</a>
+                    </li>
+                {% endfor %}
+            {% endif %}
+        </ul>
+    </div>
+</div>
+</body>
+</html>

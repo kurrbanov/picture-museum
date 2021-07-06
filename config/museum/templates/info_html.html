@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% if not picture %}
+        <title>{{ author.name }} {{ author.surname }}</title>
+    {% else %}
+        <title>{{ picture.title }}</title>
+    {% endif %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/info_styles.css' %}">
+</head>
+<body>
+<div class="main">
+    <div class="flx img-field">
+        {% if not picture %}
+            <img src="{{ author.img.url }}" alt="" width="40%">
+        {% else %}
+            <img src="{{ picture.img.url }}" alt="" width="50%">
+        {% endif %}
+    </div>
+    <div class="flx">
+        {% if not picture %}
+            <h1>{{ author.name }} {{ author.surname }}</h1>
+            <p>Годы жизни: {{ author.born }} - {{ author.die }}</p>
+            <p>Картины: {% for image in author_pics %}
+                <a href="{% url 'picture' image.id %}">{{ image.title }},</a> {% endfor %}</p>
+            <p class="bio">{{ author.bio }}</p>
+        {% else %}
+            <h4>{{ picture.title }}</h4>
+            <p>Автор: {{ picture.author.name }} {{ picture.author.surname }}</p>
+            <p>Год: {{ picture.year }}</p>
+        {% endif %}
+    </div>
+</div>
+</body>
+</html>
